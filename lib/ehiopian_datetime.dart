@@ -1,6 +1,4 @@
-import 'package:ethiopian_calendar/ethiopian_date_converter.dart';
-import 'package:ethiopian_calendar/ethiopian_date_formatter.dart';
-import 'package:ethiopian_calendar/model/ethiopian_date.dart';
+import 'package:abushakir/abushakir.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 class EhiopianDateTime extends StatefulWidget {
@@ -66,18 +64,24 @@ class _EhiopianDateTimeState extends State<EhiopianDateTime> {
   String formatDateTime(DateTime dateTime) {
     // Convert to Ethiopian calendar
 
-    EthiopianDateTime ethiopianDateTimeC = EthiopianDateConverter.convertToEthiopianDate(DateTime.now());
+    // EthiopianDateTime ethiopianDateTimeC = EthiopianDateConverter.
+    // convertToEthiopianDate(DateTime.now());
+    EtDatetime ethiopian1 = EtDatetime.fromMillisecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
+    DateTime ethopainDate = DateTime(ethiopian1.year, ethiopian1.month, ethiopian1.day, ethiopian1.hour, ethiopian1.minute, ethiopian1.second);
      DateFormat ethiopianFormat = DateFormat('EEEE, MMMM d, y h:mm:ss a', 'am');
-    String ethiopianDateTime = ethiopianFormat.format(ethiopianDateTimeC);
+    String ethiopianDateTime = ethiopianFormat.format(ethopainDate);
     return ethiopianDateTime.toString();
   }
 
   String formatDate(DateTime dateTime) {
     // Convert to Ethiopian calendar
-    EthiopianDateTime ethiopianDateTimeC =
-    EthiopianDateConverter.convertToEthiopianDate(dateTime);
-    String ethiopianDateTime = EthiopianDateFormatter("yyyy, MMM, dd", 'am').
-    format(EthiopianDateTime(ethiopianDateTimeC.year, ethiopianDateTimeC.month, ethiopianDateTimeC.day));
+    // EthiopianDateTime ethiopianDateTimeC =
+    // EthiopianDateConverter.convertToEthiopianDate(dateTime);
+    EtDatetime ethiopian1 = EtDatetime.fromMillisecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
+    DateTime ethopainDate = DateTime(ethiopian1.year, ethiopian1.month, ethiopian1.day);
+    DateFormat ethiopianFormat = DateFormat('EEEE, MMMM d, y', 'am');
+    String ethiopianDateTime = ethiopianFormat.format(ethopainDate);
+
     return ethiopianDateTime;
   }
 
